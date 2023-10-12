@@ -20,8 +20,7 @@ import market_data
 importlib.reload(market_data)
 
 #inputs
-directory = 'C:\\Users\\LENOVO\\.spyder-py3\\2024-1\\data\\' #hardcode
-ric = 'EWW'
+ric = 'MA'
 
 # computations
 dist = market_data.distribution(ric)
@@ -33,24 +32,24 @@ dist.plot_histogram()
 
 
 # lop to check normalitu in real distributions
-rics = []
-is_normals = []
-for file_name in os.listdir(directory):
-    print('file name= ' + file_name)
-    ric = file_name.split('.')[0]
-    if ric == 'datayfinance':
-        continue
+#directory = 'C:\\Users\\LENOVO\\.spyder-py3\\2024-1\\data\\' #hardcode#rics = []
+#is_normals = []
+#for file_name in os.listdir(directory):
+ #   print('file name= ' + file_name)
+  #  ric = file_name.split('.')[0]
+   # if ric == 'datayfinance':
+    #    continue
     #compute stats
-    dist = market_data.distribution(ric)
-    dist.load_timeseries()
-    dist.compute_stats()
+  # dist = market_data.distribution(ric)
+   #dist.load_timeseries()
+#    dist.compute_stats()
     # generate lists
-    rics.append(ric)
-    is_normals.append(dist.is_normal)
-df = pd.DataFrame()
-df['ric'] = rics
-df['is_normal'] = is_normals
-df = df.sort_values(by = 'is_normal', ascending = False)
+ #   rics.append(ric)
+  #  is_normals.append(dist.is_normal)
+#df = pd.DataFrame()
+#df['ric'] = rics
+#df['is_normal'] = is_normals
+#f = df.sort_values(by = 'is_normal', ascending = False)
 
 
 
