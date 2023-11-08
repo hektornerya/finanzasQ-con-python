@@ -35,6 +35,8 @@ universe = ['^MXX','^SPX','^IXIC','^STOXX','^GDAXI','^FCHI','^VIX',\
             'EURUSD=X','GBPUSD=X','CHFUSD=X','SEKUSD=X','NOKUSD=X','JPYUSD=X','MXNUSD=X']
 rics = random.sample(universe, 5)
 
+print(rics)
+
 # initialice de instance of the class
 port_mgr = portfolio.manager(rics, notional)
 
@@ -45,6 +47,43 @@ port_mgr.compute_covariance()
 port_min_variance_l1 = port_mgr.compute_portfolio('min_variance_l1')
 port_min_variance_l2 = port_mgr.compute_portfolio('min_variance_l2')
 port_equi_weight = port_mgr.compute_portfolio('equi_weight')
+port_long_only = port_mgr.compute_portfolio('long_only')
+port_markowitz = port_mgr.compute_portfolio('markowitz', target_return=None)
+
+# plot the histograms of returns for teh desired portfolio
+port_min_variance_l1.plot_histogram()
+port_min_variance_l2.plot_histogram()
+port_equi_weight.plot_histogram()
+port_long_only.plot_histogram()
+port_markowitz.plot_histogram()
+
+
+
+
+# return target
+#return_portfolio_long_only = np.round(port_mgr.returns.dot(port_long_only.weights),6)
+#return_portfolio_equi_weight = np.round(port_mgr.returns.dot(port_equi_weight.weights),6)
+#return_portfolio_markowitz = np.round(port_mgr.returns.dot(port_markowitz.weights),6)
+
+
+
+#df = pd.DataFrame()
+#df['rics'] = rics
+#df['returns'] = port_mgr.returns
+#df['volatilities'] = port_mgr.volatilities
+#df['markowitz_weights'] = port_markowitz.weights
+#df['markowitz_allocation'] = port_markowitz.allocation
+#df['min_variance_weights'] = port_min_variance_l1.weights
+#df['min_variance_allocation'] = port_min_variance_l1.allocation
+#df['equi_weight_weights'] = port_equi_weight.weights
+#df['equi_weight_allocation'] = port_equi_weight.allocation
+#df['long_only_weights'] = port_long_only.weights
+#df['long_only_allocation'] = port_long_only.allocation
+
+
+
+
+
 
 
 
