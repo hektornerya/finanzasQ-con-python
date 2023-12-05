@@ -33,7 +33,7 @@ universe = ['^MXX','^SPX','^IXIC','^STOXX','^GDAXI','^FCHI','^VIX',\
             'LLY','JNJ','PG','MRK','ABBV','PFE',\
             'BTC-USD','ETH-USD','SOL-USD','USDC-USD','USDT-USD','DAI-USD',\
             'EURUSD=X','GBPUSD=X','CHFUSD=X','SEKUSD=X','NOKUSD=X','JPYUSD=X','MXNUSD=X']
-rics = random.sample(universe, 5)
+rics = random.sample(universe, 30)
 
 print(rics)
 
@@ -44,17 +44,17 @@ port_mgr = portfolio.manager(rics, notional)
 port_mgr.compute_covariance()
 
 # compute the desired portfolio: output class = portfolio.output
-port_min_variance_l1 = port_mgr.compute_portfolio('min_variance_l1')
-port_min_variance_l2 = port_mgr.compute_portfolio('min_variance_l2')
-port_equi_weight = port_mgr.compute_portfolio('equi_weight')
-port_long_only = port_mgr.compute_portfolio('long_only')
+port_min_variance_l1 = port_mgr.compute_portfolio('min-variance-l1')
+port_min_variance_l2 = port_mgr.compute_portfolio('min-variance-l2')
+port_equi_weight = port_mgr.compute_portfolio('equi-weight')
+port_long_only = port_mgr.compute_portfolio('long-only')
 port_markowitz = port_mgr.compute_portfolio('markowitz', target_return=None)
 
 # plot the histograms of returns for teh desired portfolio
 port_min_variance_l1.plot_histogram()
 port_min_variance_l2.plot_histogram()
-port_equi_weight.plot_histogram()
 port_long_only.plot_histogram()
+port_equi_weight.plot_histogram()
 port_markowitz.plot_histogram()
 
 
